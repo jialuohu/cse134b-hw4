@@ -1,3 +1,8 @@
+// Theme Toggle Elements
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.querySelector('.theme-icon');
+
+// Form Elements
 const form = document.getElementById('contact-form');
 const nameInput = document.getElementById('name');
 const emailInput = document.getElementById('email');
@@ -11,8 +16,44 @@ const formErrorsField = document.getElementById('form-errors-field');
 const form_errors = [];
 
 const CHAR_LIMIT = 1000;
-const CHAR_WARNING_THRESHOLD = 900; 
-const ERROR_FADE_TIME = 4000; 
+const CHAR_WARNING_THRESHOLD = 900;
+const ERROR_FADE_TIME = 4000;
+
+/**
+ * Theme Toggle with localStorage
+ */
+
+// Load theme from localStorage or default to light
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
+}
+
+// Update theme icon based on current theme
+function updateThemeIcon(theme) {
+    if (theme === 'dark') {
+        themeIcon.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    } else {
+        themeIcon.innerHTML = '<i class="fa-regular fa-moon"></i>';
+    }
+}
+
+// Toggle theme
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+}
+
+// Event listener for theme toggle button
+themeToggle.addEventListener('click', toggleTheme);
+
+// Load theme on page load
+loadTheme(); 
 
 function trackError(fieldName, errorType, errorMessage, value = '') {
     const error = {
@@ -87,6 +128,7 @@ commentsInput.addEventListener('input', function(e) {
         charCounter.classList.remove('warning');
         this.classList.add('invalid');
         this.classList.remove('valid');
+
         trackError('comments', 'max_length_exceeded',
             `Character limit exceeded: ${currentLength}/${CHAR_LIMIT}`,
             this.value);
@@ -102,18 +144,19 @@ commentsInput.addEventListener('input', function(e) {
 
 function validateName() {
     const value = nameInput.value.trim();
-    const namePattern = /^[A-Za-z\s\-']+$/;
+    const namePattern = /^[A-Z][A-Za-z\s\-']*$/;
+
     if (value === '') {
         nameInput.setCustomValidity('Name is required');
         nameInput.classList.add('invalid');
         nameInput.classList.remove('valid');
         return false;
 
-    } else if (value.length < 2) {
-        nameInput.setCustomValidity('Name must be at least 2 characters long');
+    } else if (value.length < 3) {
+        nameInput.setCustomValidity('Name must be at least 3 characters long');
         nameInput.classList.add('invalid');
         nameInput.classList.remove('valid');
-        trackError('name', 'min_length', 'Name too short (less than 2 characters)', value);
+        trackError('name', 'min_length', 'Name too short (less than 3 characters)', value);
         return false;
 
     } else if (value.length > 100) {
@@ -121,6 +164,13 @@ function validateName() {
         nameInput.classList.add('invalid');
         nameInput.classList.remove('valid');
         trackError('name', 'max_length', 'Name too long (more than 100 characters)', value);
+        return false;
+
+    } else if (!/^[A-Z]/.test(value)) {
+        nameInput.setCustomValidity('Name must start with an uppercase letter');
+        nameInput.classList.add('invalid');
+        nameInput.classList.remove('valid');
+        trackError('name', 'uppercase_required', 'Name does not start with uppercase letter', value);
         return false;
 
     } else if (!namePattern.test(value)) {

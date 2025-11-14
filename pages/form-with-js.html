@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/form-with-js.css">
+    <link crossorigin="anonymous"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+          integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+          referrerpolicy="no-referrer" rel="stylesheet"/>
     <title>Contact Form with JavaScript</title>
 </head>
 <body>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">
+            <i class="fa-regular fa-moon"></i>
+        </span>
+    </button>
     <div class="container">
-        <form action="http://httpbin.org/get" method="get" id="contact-form" novalidate>
+        <form action="http://httpbin.org/post" method="post" id="contact-form" novalidate>
             <input type="hidden" name="possible_bot" value="true">
             <input type="hidden" name="form-errors" id="form-errors-field" value="">
             <div class="form-container">
@@ -20,13 +29,13 @@
                         name="name"
                         id="name"
                         required
-                        minlength="2"
+                        minlength="3"
                         maxlength="100"
-                        pattern="[A-Za-z\s\-']+"
+                        pattern="[A-Z][A-Za-z\s\-']*"
                         placeholder="Enter your full name"
                         autocomplete="name"
                         aria-required="true"
-                        data-pattern-message="Only letters, spaces, hyphens, and apostrophes allowed">
+                        data-pattern-message="Name must start with an uppercase letter and contain only letters, spaces, hyphens, and apostrophes">
                 </div>
 
                 <div class="form-field email">

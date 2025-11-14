@@ -62,6 +62,38 @@
     --footer-copyright-shadow-color: rgba(0, 0, 0, 0.5);
 }
 
+/* Dark Mode Variables */
+[data-theme="dark"] {
+    --primary-color: #2c3e50;
+    --secondary-color: #34495e;
+    --tertiary-color: #3d566e;
+    --quaternary-color: #2c3e50;
+    --quinary-color: #1abc9c;
+
+    --main-text-color: #ecf0f1;
+    --main-background-color: #1a252f;
+    --main-intro-background-color: #2c3e50;
+    --main-intro-card-icon-background-color: #34495e;
+    --main-projects-experiences-card-background-color: #34495e;
+
+    --header-background-color: #2c3e50;
+    --header-shadow-color: rgba(0, 0, 0, 0.8);
+
+    --nav-text-color: #ecf0f1;
+    --nav-background-color: #34495e;
+    --nav-shadow-color: rgba(0, 0, 0, 0.6);
+
+    --logo-shadow-color: rgba(0, 0, 0, 1);
+
+    --footer-contact-text-color: #1abc9c;
+    --footer-contact-background-color: #16213e;
+    --footer-contact-button-shadow-color: rgba(0, 0, 0, 1);
+
+    --footer-copyright-text-color: #ecf0f1;
+    --footer-copyright-background-color: #2c3e50;
+    --footer-copyright-shadow-color: rgba(0, 0, 0, 0.8);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -79,6 +111,7 @@ body {
     font-family: "Poppins", sans-serif;
     background-color: var(--main-background-color);
     line-height: 1.6;
-    color: black;
+    color: var(--main-text-color);
     scroll-behavior: smooth;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }

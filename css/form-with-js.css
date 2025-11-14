@@ -1,5 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+:root {
+    --bg-gradient-start: #667eea;
+    --bg-gradient-end: #764ba2;
+    --form-bg: #ffffff;
+    --form-text: #333333;
+    --input-bg: #f8f9fa;
+    --input-border: #e1e8ed;
+    --input-focus-bg: #ffffff;
+    --input-focus-border: #667eea;
+    --input-text: #000000;
+    --label-text: #333333;
+    --placeholder-text: #6c757d;
+    --shadow-color: rgba(0, 0, 0, 0.5);
+    --button-gradient-start: #667eea;
+    --button-gradient-end: #764ba2;
+    --button-text: #ffffff;
+}
+
+[data-theme="dark"] {
+    --bg-gradient-start: #1a1a2e;
+    --bg-gradient-end: #16213e;
+    --form-bg: #0f3460;
+    --form-text: #e0e0e0;
+    --input-bg: #1a1a2e;
+    --input-border: #16213e;
+    --input-focus-bg: #253a52;
+    --input-focus-border: #e94560;
+    --input-text: #e0e0e0;
+    --label-text: #e0e0e0;
+    --placeholder-text: #a0a0a0;
+    --shadow-color: rgba(0, 0, 0, 0.8);
+    --button-gradient-start: #e94560;
+    --button-gradient-end: #533483;
+    --button-text: #ffffff;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,9 +44,10 @@
 
 body {
     font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
     min-height: 100vh;
     padding: 20px;
+    transition: background 0.3s ease;
 }
 
 .container {
@@ -20,9 +57,11 @@ body {
 
 
 .form-container {
-    background: white;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    background: var(--form-bg);
+    color: var(--form-text);
+    box-shadow: 0 2px 20px var(--shadow-color);
     border-radius: 10px;
+    transition: background 0.3s ease, color 0.3s ease;
 
     display: flex;
     flex-direction: column;
@@ -38,6 +77,7 @@ body {
     font-size: 2rem;
     font-weight: 300;
     margin-top: 2rem;
+    color: var(--form-text);
 }
 
 .form-container .form-field {
@@ -59,8 +99,9 @@ body {
     padding: 0.5rem;
     min-height: 4rem;
     border-radius: 6px;
-    border: 2px solid #e1e8ed;
-    background-color: #f8f9fa;
+    border: 2px solid var(--input-border);
+    background-color: var(--input-bg);
+    color: var(--input-text);
 
     font-size: 1.2rem;
     font-weight: 400;
@@ -75,8 +116,8 @@ body {
 
 .form-container input:focus,
 .form-container textarea:focus {
-    border-color: #667eea;
-    background-color: white;
+    border-color: var(--input-focus-border);
+    background-color: var(--input-focus-bg);
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
     outline: none;
 }
@@ -84,10 +125,11 @@ body {
 
 .form-container input[type="submit"] {
     text-transform: uppercase;
-    color: white;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--button-text);
+    background: linear-gradient(135deg, var(--button-gradient-start) 0%, var(--button-gradient-end) 100%);
     cursor: pointer;
     box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.5);
+    transition: all 0.3s ease;
 }
 
 
@@ -109,7 +151,7 @@ body {
 .form-container label {
     font-weight: 500;
     font-size: 1rem;
-    color: #333;
+    color: var(--label-text);
     margin-bottom: 0.25rem;
 }
 
@@ -233,4 +275,41 @@ output[name="info-message"]:not(:empty) {
         border-width: 3px;
         outline-width: 3px;
     }
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: var(--form-bg);
+    border: 2px solid var(--input-border);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+.theme-icon {
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
