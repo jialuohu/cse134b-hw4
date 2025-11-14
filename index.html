@@ -142,6 +142,70 @@
             </a>
         </section>
 
+        <!-- SPA Switch -->
+        <section class="content-showcase" id="content-showcase">
+            <nav class="showcase-tabs">
+                <button class="tab-btn active" data-view="about">About</button>
+                <button class="tab-btn" data-view="skills">Skills</button>
+                <button class="tab-btn" data-view="facts">Quick Facts</button>
+            </nav>
+            <div class="showcase-content">
+                <!-- About -->
+                <div class="view-panel active" id="view-about">
+                    <h2>About Me</h2>
+                    <p>I'm a Master's student in Computer Science at UC San Diego, specializing in distributed systems, high-performance computing, and system programming. With expertise in Golang, C++, Rust, and Python, I focus on building reliable, scalable software systems.</p>
+                    <p>My experience spans research roles at UCI's TrussLab and STAR Lab, as well as industry work as a Network Engineer at ComeLife Intelligent Technology.</p>
+                </div>
+
+                <!-- Skills -->
+                <div class="view-panel" id="view-skills">
+                    <h2>Technical Skills</h2>
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Languages</h3>
+                            <ul>
+                                <li>Golang</li>
+                                <li>C/C++</li>
+                                <li>Rust</li>
+                                <li>Python</li>
+                                <li>JavaScript</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Systems</h3>
+                            <ul>
+                                <li>Distributed Systems</li>
+                                <li>Operating Systems</li>
+                                <li>Databases</li>
+                                <li>Computer Networks</li>
+                            </ul>
+                        </div>
+                        <div class="skill-category">
+                            <h3>Tools</h3>
+                            <ul>
+                                <li>Docker</li>
+                                <li>Kubernetes</li>
+                                <li>AWS</li>
+                                <li>Linux</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick facts -->
+                <div class="view-panel" id="view-facts">
+                    <h2>Quick Facts</h2>
+                    <ul class="facts-list">
+                        <li><strong>Education:</strong> Master's in Computer Science @ UC San Diego</li>
+                        <li><strong>Focus Areas:</strong> Distributed Systems, HPC, Databases</li>
+                        <li><strong>Current:</strong> Building fault-tolerant distributed systems</li>
+                        <li><strong>Research:</strong> Published at IDC '23 (10.1145/3585088.3593887)</li>
+                        <li><strong>Hobbies:</strong> Photography (@hu_frame on Instagram)</li>
+                        <li><strong>Mission:</strong> Building reliable software systems at scale</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
         <!-- Proj & Exp Part -->
         <section class="projects-experiences" id="projects-experiences">
@@ -312,6 +376,7 @@
     </div>
 </noscript>
 <script src="js/theme-toggle.js"></script>
+<script src="js/spa-switch.js"></script>
 </body>
 
 </html>
